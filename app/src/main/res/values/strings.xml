@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">ZoloStaysSample</string>
+    <string name="zolo">Zolo</string>
+    <string name="description">Rethinks PGs.Think Zolo.</string>
 </resources>
