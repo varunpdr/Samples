@@ -4,24 +4,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     android:background="@color/colorPrimary"
     tools:context="com.example.kuliza306.zolostayssample.LoginActivity">
 
 
     <RelativeLayout
+        android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="@dimen/login_view_height">
-    <ImageView
-        android:layout_width="match_parent"
-        android:scaleType="fitXY"
-        android:src="@drawable/zolo_login"
-        android:layout_height="match_parent" />
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/color_black_transparent"
-        />
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:src="@drawable/zolo_login" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/color_black_transparent" />
 
         <TextView
             android:id="@+id/title"
@@ -29,24 +32,125 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
+            android:text="@string/zolo"
             android:textColor="@color/color_white"
-            android:textSize="@dimen/text_large"
-            android:text="@string/zolo"/>
+            android:textSize="@dimen/text_large" />
 
         <TextView
             android:id="@+id/description"
             android:layout_width="wrap_content"
-            android:gravity="center"
+            android:layout_height="wrap_content"
             android:layout_below="@id/title"
-            android:textColor="@color/color_white"
-            android:textSize="@dimen/text_small"
-            android:text="@string/description"
             android:layout_centerHorizontal="true"
-            android:layout_height="wrap_content" />
+            android:gravity="center"
+            android:text="@string/description"
+            android:textColor="@color/color_white"
+            android:textSize="@dimen/text_small" />
 
     </RelativeLayout>
 
+    <RelativeLayout
+        android:id="@+id/field_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/header"
+        android:layout_margin="30dp">
 
+        <ImageView
+            android:id="@+id/icon_phone"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="25dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/ic_phone" />
 
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/phone_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout"
+            android:layout_toRightOf="@id/icon_phone"
+            android:theme="@style/LoginTextTheme">
+
+            <EditText
+                android:id="@+id/phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:hint="PHONE NUMBER"
+                android:inputType="number"
+                android:maxLines="1"
+                android:nextFocusDown="@+id/password"
+                android:textColor="@color/color_white" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <ImageView
+            android:id="@+id/icon_key"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_below="@+id/icon_phone"
+            android:layout_marginTop="35dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/ic_password" />
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/password_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/phone_label"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout"
+            android:layout_toRightOf="@id/icon_key"
+            android:theme="@style/LoginTextTheme">
+
+            <EditText
+                android:id="@+id/password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:hint="PASSWORD"
+                android:drawableRight="@mipmap/ic_visibility_off"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:nextFocusDown="@+id/password"
+                android:textColor="@color/color_white" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <Button
+            android:id="@+id/loginButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:layout_marginTop="20dp"
+            android:text="Log in"
+            android:background="@color/color_yellow"
+            android:layout_below="@+id/password_label"/>
+
+        <TextView
+            android:id="@+id/forgotPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="20dp"
+            android:layout_below="@id/loginButton"
+            android:textColor="@color/color_white"
+            android:text="Forgot Password?"
+            />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/stroke_background"
+            android:gravity="center"
+            android:textColor="@color/color_white"
+            android:text="Create Account"
+            android:layout_below="@id/forgotPassword"/>
+    </RelativeLayout>
 
 </RelativeLayout>
