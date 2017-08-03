@@ -4,5 +4,5 @@
     <dimen name="text_large">50sp</dimen>
     <dimen name="text_small">16sp</dimen>
 
-    <dimen name="login_view_height">200dp</dimen>
+    <dimen name="login_view_height">170dp</dimen>
 </resources>
