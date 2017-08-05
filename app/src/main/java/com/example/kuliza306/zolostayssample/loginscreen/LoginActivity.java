@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.example.kuliza306.zolostayssample.R;
 import com.example.kuliza306.zolostayssample.databinding.ActivityMainBinding;
+import com.example.kuliza306.zolostayssample.forgotpasswordscreen.ForgotPasswordActivity;
 import com.example.kuliza306.zolostayssample.registrationscreen.RegistrationActivity;
 
 import rx.Observer;
@@ -106,7 +107,8 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 else
                 {
-
+                    Intent intent = new Intent(LoginActivity.this, ForgotPasswordActivity.class);
+                    startActivity(intent);
                 }
             }
         });

@@ -94,42 +94,42 @@ public class RegistrationActivity extends AppCompatActivity {
         mViewModel.getmTransitionSubject().subscribe(new Action1<String>() {
             @Override
             public void call(String s) {
-               finish();
+                finish();
             }
         });
 
-                mViewModel.getmRegisterStatus().subscribe(new Observer<Boolean>() {
-                    @Override
-                    public void onCompleted() {
+        mViewModel.getmRegisterStatus().subscribe(new Observer<Boolean>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onNext(Boolean status) {
+                if (!status) {
+                    if (mMobileError != null) {
+                        mBinding.phone.setError(mMobileError);
+                    } else if (mEmailError != null) {
+                        mBinding.email.setError(mEmailError);
+                    } else if (mNameError != null) {
+                        mBinding.name.setError(mNameError);
+                    } else if (mPasswordError != null) {
+                        mBinding.password.setError(mPasswordError);
+                    } else {
+                        Toast.makeText(RegistrationActivity.this, "user already exists", Toast.LENGTH_LONG).show();
 
                     }
-
-                    @Override
-                    public void onError(Throwable e) {
-
-                    }
-
-                    @Override
-                    public void onNext(Boolean status) {
-                        if (!status) {
-                            if (mMobileError != null) {
-                                mBinding.phone.setError(mMobileError);
-                            } else if (mEmailError != null) {
-                                mBinding.email.setError(mEmailError);
-                            } else if (mNameError != null) {
-                                mBinding.name.setError(mNameError);
-                            } else if (mPasswordError != null) {
-                                mBinding.password.setError(mPasswordError);
-                            } else {
-                                Toast.makeText(RegistrationActivity.this, "user already exists", Toast.LENGTH_LONG).show();
-
-                            }
-                        } else {
-                            //todo can open user profile from this point.
-                            Toast.makeText(RegistrationActivity.this, "Registration successfull", Toast.LENGTH_LONG).show();
-                        }
-                    }
-                });
+                } else {
+                    //todo can open user profile from this point.
+                    Toast.makeText(RegistrationActivity.this, "Registration successfull", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
 
     }
 }

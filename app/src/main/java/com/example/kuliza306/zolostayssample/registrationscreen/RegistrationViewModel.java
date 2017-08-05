@@ -160,7 +160,7 @@ public class RegistrationViewModel extends BaseObservable {
             UserInfoData userInfoData=DataProviderManager.getUserInfo(mContext,mMobileField.get().toString(),mEmailField.get().toLowerCase().toString());
             if(userInfoData==null)
             {
-                DataProviderManager.insertUserInfo(mContext,new UserInfoData(mMobileField.get().toLowerCase(),mEmailField.get().toLowerCase(),mNameField.get().toLowerCase(),mPasswordField.get().toLowerCase()));
+                DataProviderManager.insertUserInfo(mContext,new UserInfoData(mMobileField.get().toLowerCase(),mEmailField.get().toLowerCase(),mNameField.get().toLowerCase(),mPasswordField.get().toString()));
                 mRegisterStatus.onNext(true);
             }
             else
