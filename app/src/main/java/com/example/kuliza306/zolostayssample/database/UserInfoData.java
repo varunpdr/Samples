@@ -4,28 +4,52 @@ package com.example.kuliza306.zolostayssample.database;
 
 // KEEP INCLUDES - put your custom includes here
 // KEEP INCLUDES END
+
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Entity mapped to table "UserInfoData".
  */
-public class UserInfoData {
+public class UserInfoData implements Parcelable{
 
+    private Long id;
     private String phoneNumber;
     private String emailId;
     private String name;
     private String password;
 
     // KEEP FIELDS - put your custom fields here
-
+    public UserInfoData(String phoneNumber, String emailId, String name, String password) {
+        this.id = id;
+        this.phoneNumber = phoneNumber;
+        this.emailId = emailId;
+        this.name = name;
+        this.password = password;
+    }
     // KEEP FIELDS END
 
     public UserInfoData() {
     }
 
-    public UserInfoData(String phoneNumber, String emailId, String name, String password) {
+    public UserInfoData(Long id) {
+        this.id = id;
+    }
+
+    public UserInfoData(Long id, String phoneNumber, String emailId, String name, String password) {
+        this.id = id;
         this.phoneNumber = phoneNumber;
         this.emailId = emailId;
         this.name = name;
         this.password = password;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getPhoneNumber() {
@@ -61,6 +85,46 @@ public class UserInfoData {
     }
 
     // KEEP METHODS - put your custom methods here
+
+    protected UserInfoData(Parcel in) {
+        id = in.readByte() == 0x00 ? null : in.readLong();
+        phoneNumber = in.readString();
+        emailId = in.readString();
+        name = in.readString();
+        password = in.readString();
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        if (id == null) {
+            dest.writeByte((byte) (0x00));
+        } else {
+            dest.writeByte((byte) (0x01));
+            dest.writeLong(id);
+        }
+        dest.writeString(phoneNumber);
+        dest.writeString(emailId);
+        dest.writeString(name);
+        dest.writeString(password);
+    }
+
+    @SuppressWarnings("unused")
+    public static final Parcelable.Creator<UserInfoData> CREATOR = new Parcelable.Creator<UserInfoData>() {
+        @Override
+        public UserInfoData createFromParcel(Parcel in) {
+            return new UserInfoData(in);
+        }
+
+        @Override
+        public UserInfoData[] newArray(int size) {
+            return new UserInfoData[size];
+        }
+    };
     // KEEP METHODS END
 
 }

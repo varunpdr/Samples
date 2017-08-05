@@ -14,6 +14,7 @@ import com.example.kuliza306.zolostayssample.databinding.ActivityMainBinding;
 import com.example.kuliza306.zolostayssample.databinding.ActivityRegistrationBinding;
 import com.example.kuliza306.zolostayssample.loginscreen.LoginActivity;
 import com.example.kuliza306.zolostayssample.loginscreen.LoginViewModel;
+import com.example.kuliza306.zolostayssample.utility.Utility;
 
 import rx.Observer;
 import rx.functions.Action1;
@@ -113,20 +114,19 @@ public class RegistrationActivity extends AppCompatActivity {
             public void onNext(Boolean status) {
                 if (!status) {
                     if (mMobileError != null) {
-                        mBinding.phone.setError(mMobileError);
+                        Utility.showSnackbar(RegistrationActivity.this,mMobileError, mBinding.coordinateLayout, false);
                     } else if (mEmailError != null) {
-                        mBinding.email.setError(mEmailError);
+                        Utility.showSnackbar(RegistrationActivity.this,mEmailError, mBinding.coordinateLayout, false);
                     } else if (mNameError != null) {
-                        mBinding.name.setError(mNameError);
+                        Utility.showSnackbar(RegistrationActivity.this,mNameError, mBinding.coordinateLayout, false);
                     } else if (mPasswordError != null) {
-                        mBinding.password.setError(mPasswordError);
-                    } else {
-                        Toast.makeText(RegistrationActivity.this, "user already exists", Toast.LENGTH_LONG).show();
+                        Utility.showSnackbar(RegistrationActivity.this,mPasswordError, mBinding.coordinateLayout, false);
 
+                    } else {
+                        Utility.showSnackbar(RegistrationActivity.this,getResources().getString(R.string.user_already_exists), mBinding.coordinateLayout, false);
                     }
                 } else {
-                    //todo can open user profile from this point.
-                    Toast.makeText(RegistrationActivity.this, "Registration successfull", Toast.LENGTH_LONG).show();
+                    Utility.showSnackbar(RegistrationActivity.this,getResources().getString(R.string.register_success), mBinding.coordinateLayout, true);
                 }
             }
         });

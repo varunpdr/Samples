@@ -2,4 +2,13 @@
     <string name="app_name">ZoloStaysSample</string>
     <string name="zolo">Zolo</string>
     <string name="description">Rethinks PGs.Think Zolo.</string>
+
+    <!-- msgs-->
+   <string name="invalid_credentials">Invalid credentials</string>
+    <string name="login_success">Login success></string>
+    <string name="user_already_exists">user already exists</string>
+    <string name="register_success">Successfully registered</string>
+    <string name="email_not_registered">"This email is not registered with us."</string>
+    <string name="email_sent">An email has been sent to your email</string>
+    <string name="update_success">Successfully updated</string>
 </resources>

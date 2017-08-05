@@ -32,6 +32,7 @@ public class LoginViewModel extends BaseObservable {
     private Observable<String> mPasswordStream;
     private PublishSubject<Boolean> mLoginStatus;
     private PublishSubject<String> mTransitionSubject;
+    private PublishSubject<UserInfoData> mLoginModelSubject;
     private Context mContext;
 
     LoginViewModel(Context context) {
@@ -40,6 +41,7 @@ public class LoginViewModel extends BaseObservable {
         mPasswordStream = toObservable(mPasswordField);
         mLoginStatus = PublishSubject.create();
         mTransitionSubject = PublishSubject.create();
+        mLoginModelSubject=PublishSubject.create();
 
     }
 
@@ -110,6 +112,7 @@ public class LoginViewModel extends BaseObservable {
             UserInfoData userInfoData = DataProviderManager.getUserLoginInfo(mContext, mMobileField.get().toString().trim(),mPasswordField.get());
             if (userInfoData != null) {
                 mLoginStatus.onNext(true);
+                mLoginModelSubject.onNext(userInfoData);
             } else {
                 mLoginStatus.onNext(false);
             }
@@ -135,4 +138,12 @@ public class LoginViewModel extends BaseObservable {
         return null;
     }
 
+    public PublishSubject<UserInfoData> getmLoginModelSubject() {
+        return mLoginModelSubject;
+    }
+
+    public void clearFields() {
+        mMobileField.set("");
+        mPasswordField.set("");
+    }
 }

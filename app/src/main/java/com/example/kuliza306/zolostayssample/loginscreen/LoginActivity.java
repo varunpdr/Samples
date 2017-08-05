@@ -5,14 +5,17 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.method.PasswordTransformationMethod;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
 import com.example.kuliza306.zolostayssample.R;
+import com.example.kuliza306.zolostayssample.database.UserInfoData;
 import com.example.kuliza306.zolostayssample.databinding.ActivityMainBinding;
 import com.example.kuliza306.zolostayssample.forgotpasswordscreen.ForgotPasswordActivity;
+import com.example.kuliza306.zolostayssample.profile.ProfileActivity;
 import com.example.kuliza306.zolostayssample.registrationscreen.RegistrationActivity;
+import com.example.kuliza306.zolostayssample.utility.Constants;
+import com.example.kuliza306.zolostayssample.utility.Utility;
 
 import rx.Observer;
 import rx.functions.Action1;
@@ -83,16 +86,15 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onNext(Boolean status) {
                 if (!status) {
-                    if (mMobileError != null)
-                        mActivityMainBinding.phone.setError(mMobileError);
-                    else if (mPasswordError != null) {
-                        mActivityMainBinding.password.setError(mPasswordError);
+                    if (mMobileError != null) {
+                        Utility.showSnackbar(LoginActivity.this, mMobileError, mActivityMainBinding.coordinateLayout, false);
+                    } else if (mPasswordError != null) {
+                        Utility.showSnackbar(LoginActivity.this, mPasswordError, mActivityMainBinding.coordinateLayout, false);
                     } else {
-                        Toast.makeText(LoginActivity.this,"Invalid credentials",Toast.LENGTH_LONG).show();
+                        Utility.showSnackbar(LoginActivity.this, getResources().getString(R.string.invalid_credentials), mActivityMainBinding.coordinateLayout, false);
                     }
                 } else {
-                    //todo can open user profile from this point.
-                    Toast.makeText(LoginActivity.this, "Login Success", Toast.LENGTH_LONG).show();
+                    Utility.showSnackbar(LoginActivity.this, getResources().getString(R.string.login_success), mActivityMainBinding.coordinateLayout, true);
                 }
             }
         });
@@ -100,19 +102,37 @@ public class LoginActivity extends AppCompatActivity {
         mLoginViewModel.getmTransitionSubject().subscribe(new Action1<String>() {
             @Override
             public void call(String event) {
-                if(event.equalsIgnoreCase("register"))
-                {
+                mLoginViewModel.clearFields();
+                if (event.equalsIgnoreCase(Constants.REGISTER)) {
                     Intent intent = new Intent(LoginActivity.this, RegistrationActivity.class);
                     startActivity(intent);
-                }
-                else
-                {
+                } else {
                     Intent intent = new Intent(LoginActivity.this, ForgotPasswordActivity.class);
                     startActivity(intent);
                 }
             }
         });
 
+        mLoginViewModel.getmLoginModelSubject().subscribe(new Observer<UserInfoData>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onNext(UserInfoData userInfoData) {
+                Intent i = new Intent(LoginActivity.this, ProfileActivity.class);
+                i.putExtra(Constants.USER_INFO, userInfoData);
+                startActivity(i);
+                finish();
+                ;
+            }
+        });
 
 
     }

@@ -63,4 +63,10 @@ public class DataProviderManager {
         }
         return sDaoSession;
     }
+
+    public static void replaceUserInfo(Context mContext, UserInfoData userInfoData) {
+       getsDaoSession(mContext).getUserInfoDataDao().insertOrReplace(userInfoData);
+
+
+    }
 }

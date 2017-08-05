@@ -13,11 +13,12 @@ public class ZoloDaoGenerator {
 
     public static void main(String args[]) throws Exception {
 
-        Schema schema=new Schema(1,"com.example.kuliza306.zolostayssample.database");
+        Schema schema=new Schema(2,"com.example.kuliza306.zolostayssample.database");
         schema.enableKeepSectionsByDefault();
 
         Entity userInfo= schema.addEntity("UserInfoData");
         userInfo.setTableName("UserInfoData");
+        userInfo.addLongProperty("id").primaryKey().autoincrement();
         userInfo.addStringProperty("phoneNumber");
         userInfo.addStringProperty("emailId");
         userInfo.addStringProperty("name");

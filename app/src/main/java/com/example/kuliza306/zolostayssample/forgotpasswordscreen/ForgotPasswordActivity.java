@@ -8,6 +8,8 @@ import android.widget.Toast;
 
 import com.example.kuliza306.zolostayssample.R;
 import com.example.kuliza306.zolostayssample.databinding.ActivityForgotPasswordBinding;
+import com.example.kuliza306.zolostayssample.registrationscreen.RegistrationActivity;
+import com.example.kuliza306.zolostayssample.utility.Utility;
 
 import rx.Observer;
 import rx.functions.Action1;
@@ -70,14 +72,12 @@ public class ForgotPasswordActivity extends AppCompatActivity {
             public void onNext(Boolean status) {
                 if (!status) {
                     if (mEmailError != null) {
-                        mBinding.email.setError(mEmailError);
+                        Utility.showSnackbar(ForgotPasswordActivity.this,mEmailError, mBinding.coordinateLayout, false);
                     } else {
-                        Toast.makeText(ForgotPasswordActivity.this, "This email is not registered with us.", Toast.LENGTH_LONG).show();
-
+                        Utility.showSnackbar(ForgotPasswordActivity.this,getResources().getString(R.string.email_not_registered), mBinding.coordinateLayout, false);
                     }
                 } else {
-                    //todo can open user profile from this point.
-                    Toast.makeText(ForgotPasswordActivity.this, "Email has been sent to your email", Toast.LENGTH_LONG).show();
+                    Utility.showSnackbar(ForgotPasswordActivity.this,getResources().getString(R.string.email_sent), mBinding.coordinateLayout, true);
                     finish();
                 }
             }
