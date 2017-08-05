@@ -9,7 +9,7 @@
 
         <variable
             name="loginViewModel"
-            type="com.example.kuliza306.zolostayssample.LoginViewModel" />
+            type="com.example.kuliza306.zolostayssample.loginscreen.LoginViewModel" />
     </data>
 
     <android.support.design.widget.CoordinatorLayout
@@ -167,10 +167,12 @@
                     android:layout_below="@id/loginButton"
                     android:layout_marginTop="20dp"
                     android:gravity="center"
+                    android:onClick="@{loginViewModel.onForgotTextClick()}"
                     android:text="Forgot Password?"
                     android:textColor="@color/color_white" />
 
                 <Button
+                    android:id="@+id/register"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/forgotPassword"
@@ -178,6 +180,7 @@
                     android:background="@drawable/stroke_background"
                     android:gravity="center"
                     android:text="Create Account"
+                    android:onClick="@{loginViewModel.onRegisterButtonClick()}"
                     android:textColor="@color/color_white" />
             </RelativeLayout>
 

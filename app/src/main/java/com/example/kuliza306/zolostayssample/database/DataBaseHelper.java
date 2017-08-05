@@ -1,12 +1,13 @@
 package com.example.kuliza306.zolostayssample.database;
 
+import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+
 /**
  * Created by kuliza306 on 05/08/17.
  */
 
-import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 
 public class DataBaseHelper extends SQLiteOpenHelper {
     private static DataBaseHelper instance;
@@ -18,13 +19,9 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     public static DataBaseHelper getInstance(Context context) {
         if (instance == null) {
-            synchronized (DataBaseHelper.class) {
-                if (instance == null) {
-                    instance = new DataBaseHelper(context, "turvo", null);
+                    instance = new DataBaseHelper(context, "zolo", null);
                     mContext = context;
                 }
-            }
-        }
 
         return instance;
     }

@@ -32,9 +32,10 @@ public class LoginViewModel extends BaseObservable {
     private Observable<String> mPasswordStream;
     private PublishSubject<Boolean> mLoginStatus;
     private PublishSubject<String> mTransitionSubject;
-    private Context mcontext;
+    private Context mContext;
 
-    LoginViewModel(Context mContext) {
+    LoginViewModel(Context context) {
+        mContext=context;
         mMobileStream = toObservable(mMobileField);
         mPasswordStream = toObservable(mPasswordField);
         mLoginStatus = PublishSubject.create();
@@ -106,7 +107,7 @@ public class LoginViewModel extends BaseObservable {
         if (validateMobile() != null || validatePassword() != null) {
             mLoginStatus.onNext(false);
         } else {
-            UserInfoData userInfoData = DataProviderManager.getUserInfo(mcontext, mMobileField.get().toString().trim());
+            UserInfoData userInfoData = DataProviderManager.getUserLoginInfo(mContext, mMobileField.get().toString().trim(),mPasswordField.get());
             if (userInfoData != null) {
                 mLoginStatus.onNext(true);
             } else {

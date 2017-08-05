@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".screens.home.HomeActivity"
+    tools:ignore="MissingPrefix">
+
+    <data>
+
+        <variable
+            name="regViewModel"
+            type="com.example.kuliza306.zolostayssample.registrationscreen.RegistrationViewModel" />
+    </data>
+
+    <android.support.design.widget.CoordinatorLayout
+        android:id="@+id/coordinate"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimary"
+            android:focusable="true"
+            android:focusableInTouchMode="true">
+
+            <TextView
+                android:id="@+id/login_view"
+                android:layout_width="wrap_content"
+                android:gravity="center"
+                android:layout_alignParentRight="true"
+                android:layout_margin="10dp"
+                android:textColor="@color/color_white"
+                android:text="LOG IN"
+                android:onClick="@{regViewModel.onLogInClick()}"
+                android:textSize="18sp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/register"
+                android:layout_width="wrap_content"
+                android:gravity="center"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="50dp"
+                android:textColor="@color/color_white"
+                android:text="REGISTER"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/reg_descrption"
+                android:layout_width="wrap_content"
+                android:gravity="center"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="120dp"
+                android:textColor="@color/color_white"
+                android:text="Please Register with Zolo to continue"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_height="wrap_content" />
+
+            <RelativeLayout
+                android:id="@+id/field_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/reg_descrption"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="20dp">
+
+                <ImageView
+                    android:id="@+id/icon_phone"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginTop="25dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_phone" />
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/phone_label"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@id/icon_phone"
+                    android:theme="@style/LoginTextTheme"
+                    app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout">
+
+                    <EditText
+                        android:id="@+id/phone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:focusable="true"
+                        android:hint="PHONE NUMBER"
+                        android:inputType="number"
+                        android:maxLength="10"
+                        android:maxLines="1"
+                        android:nextFocusDown="@+id/email"
+                        android:text="@={regViewModel.mMobileField}"
+                        android:textColor="@color/color_white" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <ImageView
+                    android:id="@+id/icon_email"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_below="@+id/icon_phone"
+                    android:layout_marginTop="30dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_email" />
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/email_label"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_below="@+id/phone_label"
+                    android:layout_toRightOf="@id/icon_phone"
+                    android:theme="@style/LoginTextTheme"
+                    app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout">
+
+                    <EditText
+                        android:id="@+id/email"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:focusable="true"
+                        android:hint="YOUR EMAIL ID"
+                        android:inputType="textEmailAddress"
+                        android:maxLines="1"
+                        android:nextFocusDown="@+id/name"
+                        android:text="@={regViewModel.mEmailField}"
+                        android:textColor="@color/color_white" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <ImageView
+                    android:id="@+id/icon_name"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_below="@+id/icon_email"
+                    android:layout_marginTop="30dp"
+                    android:background="@android:color/transparent"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_person" />
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/name_label"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_below="@+id/email_label"
+                    android:layout_toRightOf="@id/icon_phone"
+                    android:theme="@style/LoginTextTheme"
+                    app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout">
+
+                    <EditText
+                        android:id="@+id/name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:focusable="true"
+                        android:hint="YOUR NAME"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:nextFocusDown="@+id/password"
+                        android:text="@={regViewModel.mNameField}"
+                        android:textColor="@color/color_white" />
+
+                </android.support.design.widget.TextInputLayout>
+                <ImageView
+                    android:id="@+id/icon_key"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_below="@+id/icon_name"
+                    android:layout_marginTop="30dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_password" />
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/password_label"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/name_label"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@id/icon_key"
+                    android:theme="@style/LoginTextTheme"
+                    app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout">
+
+                    <EditText
+                        android:id="@+id/password"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:focusable="true"
+                        android:hint="PASSWORD"
+                        android:inputType="textPassword"
+                        android:maxLines="1"
+                        android:nextFocusDown="@+id/password"
+                        android:paddingRight="30dp"
+                        android:text="@={regViewModel.mPasswordField}"
+                        android:textColor="@color/color_white" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <ImageView
+                    android:id="@+id/password_vibility"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_alignBottom="@id/password_label"
+                    android:layout_alignParentRight="true"
+                    android:layout_margin="10dp"
+                    android:src="@drawable/ic_visibility_off" />
+
+                <Button
+                    android:id="@+id/register_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/password_label"
+                    android:layout_marginTop="20dp"
+                    android:background="@color/color_yellow"
+                    android:gravity="center"
+                    android:onClick="@{regViewModel.onRegButtonClick()}"
+                    android:text="REGISTER"
+                    android:textStyle="bold" />
+
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+    </android.support.design.widget.CoordinatorLayout>
+</layout>

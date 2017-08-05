@@ -5,6 +5,7 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.method.PasswordTransformationMethod;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -31,7 +32,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void initDataBinding() {
-        mActivityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        mActivityMainBinding = DataBindingUtil.setContentView(LoginActivity.this, R.layout.activity_main);
         mLoginViewModel = new LoginViewModel(this);
         mActivityMainBinding.setLoginViewModel(mLoginViewModel);
     }
@@ -86,8 +87,7 @@ public class LoginActivity extends AppCompatActivity {
                     else if (mPasswordError != null) {
                         mActivityMainBinding.password.setError(mPasswordError);
                     } else {
-                        Toast.makeText(LoginActivity.this, "Invalid credentials", Toast.LENGTH_LONG).show();
-
+                        Toast.makeText(LoginActivity.this,"Invalid credentials",Toast.LENGTH_LONG).show();
                     }
                 } else {
                     //todo can open user profile from this point.

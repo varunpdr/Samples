@@ -5,6 +5,13 @@ import android.databinding.BaseObservable;
 import android.databinding.ObservableField;
 import android.view.View;
 
+import com.example.kuliza306.zolostayssample.R;
+import com.example.kuliza306.zolostayssample.database.DataProviderManager;
+import com.example.kuliza306.zolostayssample.database.UserInfoData;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import rx.Observable;
 import rx.functions.Func1;
 import rx.subjects.PublishSubject;
@@ -19,8 +26,8 @@ public class RegistrationViewModel extends BaseObservable {
 
     public ObservableField<String> mMobileField = new ObservableField<>("");
     public ObservableField<String> mPasswordField = new ObservableField<>("");
-    public ObservableField<String> mNameField=new ObservableField<>("");
-    public ObservableField<String> mEmailField=new ObservableField<>("");
+    public ObservableField<String> mNameField = new ObservableField<>("");
+    public ObservableField<String> mEmailField = new ObservableField<>("");
     private Observable<String> mMobileStream;
     private Observable<String> mPasswordStream;
     private Observable<String> mNameStream;
@@ -28,13 +35,13 @@ public class RegistrationViewModel extends BaseObservable {
     private PublishSubject<Boolean> mRegisterStatus;
     private PublishSubject<String> mTransitionSubject;
     private Context mContext;
-    RegistrationViewModel(Context context)
-    {
-        mContext=context;
+
+    RegistrationViewModel(Context context) {
+        mContext = context;
         mMobileStream = toObservable(mMobileField);
         mPasswordStream = toObservable(mPasswordField);
-        mNameStream=toObservable(mNameField);
-        mEmailStream=toObservable(mEmailField);
+        mNameStream = toObservable(mNameField);
+        mEmailStream = toObservable(mEmailField);
         mRegisterStatus = PublishSubject.create();
         mTransitionSubject = PublishSubject.create();
 
@@ -92,13 +99,26 @@ public class RegistrationViewModel extends BaseObservable {
             }
         };
     }
-    private String validateMobile() {
-            if (mMobileField.get().toString().trim().isEmpty()) {
-                return "mobile number can't be empty";
-            } else if (Integer.parseInt(mMobileField.get().toString().substring(0, 1)) < 7 || mMobileField.get().toString().trim().length() < 10)
-                return "invalid mobile number";
 
-            return null;
+    public View.OnClickListener onLogInClick()
+    {
+
+        return new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                mTransitionSubject.onNext("login");
+            }
+        };
+    }
+
+    private String validateMobile() {
+        if (mMobileField.get().toString().trim().isEmpty()) {
+            return "mobile number can't be empty";
+        } else if (Integer.parseInt(mMobileField.get().toString().substring(0, 1)) < 7 || mMobileField.get().toString().trim().length() < 10)
+            return "invalid mobile number";
+
+        return null;
     }
 
     private String validatePassword() {
@@ -110,25 +130,43 @@ public class RegistrationViewModel extends BaseObservable {
         return null;
     }
 
-    private String validateName()
-    {
-        return null;
-    }
+    private String validateName() {
+        String regx = "^[\\p{L} .'-]+$";
+        Pattern pattern = Pattern.compile(regx, Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(mNameField.get().toString());
 
-    private String validateEmail()
-    {
-        return null;
-    }
-
-    private void processRegistration()
-    {
-        if(validateMobile()!=null || validateEmail()!=null || validatePassword()!=null || validateName()!=null)
-        {
-            mRegisterStatus.onNext(false);
+        if (mNameField.get().toString().trim().isEmpty()) {
+            return "name cant'be empty";
+        } else if (!matcher.matches()) {
+            return "invalid name";
         }
-        else
-        {
+        return null;
+    }
 
+    private String validateEmail() {
+        if (mEmailField.get().isEmpty()) {
+            return "email cant'be empty";
+        } else if (!android.util.Patterns.EMAIL_ADDRESS.matcher(mEmailField.get()).matches()) {
+            return "invalid email id";
+        }
+        return null;
+    }
+
+    private void processRegistration() {
+        if (validateMobile() != null || validateEmail() != null || validatePassword() != null || validateName() != null) {
+            mRegisterStatus.onNext(false);
+        } else {
+
+            UserInfoData userInfoData=DataProviderManager.getUserInfo(mContext,mMobileField.get().toString(),mEmailField.get().toLowerCase().toString());
+            if(userInfoData==null)
+            {
+                DataProviderManager.insertUserInfo(mContext,new UserInfoData(mMobileField.get().toLowerCase(),mEmailField.get().toLowerCase(),mNameField.get().toLowerCase(),mPasswordField.get().toLowerCase()));
+                mRegisterStatus.onNext(true);
+            }
+            else
+            {
+                mRegisterStatus.onNext(false);
+            }
         }
     }
 

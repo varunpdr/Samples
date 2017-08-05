@@ -15,6 +15,7 @@ public class UserInfoData {
     private String password;
 
     // KEEP FIELDS - put your custom fields here
+
     // KEEP FIELDS END
 
     public UserInfoData() {
