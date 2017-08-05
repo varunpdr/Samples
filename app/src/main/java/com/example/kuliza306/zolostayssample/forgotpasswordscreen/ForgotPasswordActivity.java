@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.example.kuliza306.zolostayssample.R;
 import com.example.kuliza306.zolostayssample.databinding.ActivityForgotPasswordBinding;
+import com.example.kuliza306.zolostayssample.utility.Constants;
 import com.example.kuliza306.zolostayssample.utility.Utility;
 
 import rx.Observer;
@@ -75,7 +76,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
                         Utility.showSnackbar(ForgotPasswordActivity.this, getResources().getString(R.string.email_not_registered), mBinding.coordinateLayout, false);
                     }
                 } else {
-                    Utility.showSnackbar(ForgotPasswordActivity.this, getResources().getString(R.string.email_sent), mBinding.coordinateLayout, true);
+                    setResult(RESULT_OK);
                     finish();
                 }
             }

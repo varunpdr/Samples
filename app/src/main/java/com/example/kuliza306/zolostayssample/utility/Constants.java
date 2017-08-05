@@ -10,4 +10,5 @@ public class Constants {
     public static final String REGISTER="register";
     public static final String FORGOT_PASSWORD="forgot";
     public static final String LOGIN ="login" ;
+    public static final int FORGOT_EVENT = 123;
 }

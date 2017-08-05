@@ -107,7 +107,7 @@ public class LoginActivity extends AppCompatActivity {
                     startActivity(intent);
                 } else {
                     Intent intent = new Intent(LoginActivity.this, ForgotPasswordActivity.class);
-                    startActivity(intent);
+                    startActivityForResult(intent,Constants.FORGOT_EVENT);
                 }
             }
         });
@@ -136,4 +136,12 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==Constants.FORGOT_EVENT && resultCode==RESULT_OK)
+        {
+            Utility.showSnackbar(LoginActivity.this, getResources().getString(R.string.email_sent), mBinding.coordinateLayout, true);
+        }
+    }
 }
