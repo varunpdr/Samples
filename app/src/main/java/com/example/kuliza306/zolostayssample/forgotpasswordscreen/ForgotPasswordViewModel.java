@@ -5,10 +5,10 @@ import android.databinding.BaseObservable;
 import android.databinding.ObservableField;
 import android.view.View;
 
+import com.example.kuliza306.zolostayssample.R;
 import com.example.kuliza306.zolostayssample.database.DataProviderManager;
 import com.example.kuliza306.zolostayssample.database.UserInfoData;
-
-import java.util.List;
+import com.example.kuliza306.zolostayssample.utility.Constants;
 
 import rx.Observable;
 import rx.functions.Func1;
@@ -56,9 +56,9 @@ public class ForgotPasswordViewModel extends BaseObservable {
 
     private String validateEmail() {
         if (mEmailField.get().isEmpty()) {
-            return "email cant'be empty";
+            return mContext.getResources().getString(R.string.empty_email);
         } else if (!android.util.Patterns.EMAIL_ADDRESS.matcher(mEmailField.get()).matches()) {
-            return "invalid email id";
+            return mContext.getString(R.string.invalid_email);
         }
         return null;
     }
@@ -69,7 +69,7 @@ public class ForgotPasswordViewModel extends BaseObservable {
 
             @Override
             public void onClick(View v) {
-                mTransitionSubject.onNext("login");
+                mTransitionSubject.onNext(Constants.LOGIN);
             }
         };
     }

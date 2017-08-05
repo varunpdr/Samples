@@ -4,11 +4,9 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.Toast;
 
 import com.example.kuliza306.zolostayssample.R;
 import com.example.kuliza306.zolostayssample.databinding.ActivityForgotPasswordBinding;
-import com.example.kuliza306.zolostayssample.registrationscreen.RegistrationActivity;
 import com.example.kuliza306.zolostayssample.utility.Utility;
 
 import rx.Observer;
@@ -72,12 +70,12 @@ public class ForgotPasswordActivity extends AppCompatActivity {
             public void onNext(Boolean status) {
                 if (!status) {
                     if (mEmailError != null) {
-                        Utility.showSnackbar(ForgotPasswordActivity.this,mEmailError, mBinding.coordinateLayout, false);
+                        Utility.showSnackbar(ForgotPasswordActivity.this, mEmailError, mBinding.coordinateLayout, false);
                     } else {
-                        Utility.showSnackbar(ForgotPasswordActivity.this,getResources().getString(R.string.email_not_registered), mBinding.coordinateLayout, false);
+                        Utility.showSnackbar(ForgotPasswordActivity.this, getResources().getString(R.string.email_not_registered), mBinding.coordinateLayout, false);
                     }
                 } else {
-                    Utility.showSnackbar(ForgotPasswordActivity.this,getResources().getString(R.string.email_sent), mBinding.coordinateLayout, true);
+                    Utility.showSnackbar(ForgotPasswordActivity.this, getResources().getString(R.string.email_sent), mBinding.coordinateLayout, true);
                     finish();
                 }
             }

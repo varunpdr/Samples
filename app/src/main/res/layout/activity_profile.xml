@@ -29,22 +29,22 @@
                 android:layout_width="wrap_content"
                 android:gravity="center"
                 android:layout_alignParentRight="true"
-                android:layout_margin="10dp"
+                android:layout_margin="@dimen/margin_small"
                 android:textColor="@color/color_white"
                 android:text="LOG OUT"
                 android:onClick="@{profileViewModel.onLogOutClick()}"
-                android:textSize="18sp"
+                android:textSize="@dimen/text_medium"
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:id="@+id/register"
+                android:id="@+id/profile"
                 android:layout_width="wrap_content"
                 android:gravity="center"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="@dimen/margin_xxxlarge"
                 android:textColor="@color/color_white"
                 android:text="PROFILE"
-                android:textSize="30sp"
+                android:textSize="@dimen/text_xxxmedium"
                 android:textStyle="bold"
                 android:layout_height="wrap_content" />
 
@@ -53,10 +53,11 @@
                 android:layout_width="wrap_content"
                 android:gravity="center"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="120dp"
+                android:layout_below="@id/profile"
+                android:layout_marginTop="@dimen/margin_vlarge"
                 android:textColor="@color/color_white"
                 android:text="You can edit yout profile here."
-                android:textSize="16sp"
+                android:textSize="@dimen/text_small"
                 android:textStyle="bold"
                 android:layout_height="wrap_content" />
 
@@ -65,15 +66,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/reg_descrption"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
-                android:layout_marginTop="20dp">
+                android:layout_marginLeft="@dimen/margin_vlarge"
+                android:layout_marginRight="@dimen/margin_vlarge"
+                android:layout_marginTop="@dimen/margin_medium">
 
                 <ImageView
                     android:id="@+id/icon_phone"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:layout_marginTop="25dp"
+                    android:layout_width="@dimen/icon_size"
+                    android:layout_height="@dimen/icon_size"
+                    android:layout_marginTop="@dimen/margin_large"
                     android:scaleType="fitXY"
                     android:src="@drawable/ic_phone" />
 
@@ -81,7 +82,7 @@
                     android:id="@+id/phone_label"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="@dimen/margin_small"
                     android:layout_toRightOf="@id/icon_phone"
                     android:theme="@style/LoginTextTheme"
                     app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout">
@@ -103,10 +104,10 @@
 
                 <ImageView
                     android:id="@+id/icon_email"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
+                    android:layout_width="@dimen/icon_size"
+                    android:layout_height="@dimen/icon_size"
                     android:layout_below="@+id/icon_phone"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="@dimen/margin_vlarge"
                     android:scaleType="fitXY"
                     android:src="@drawable/ic_email" />
 
@@ -114,7 +115,7 @@
                     android:id="@+id/email_label"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="@dimen/margin_small"
                     android:layout_below="@+id/phone_label"
                     android:layout_toRightOf="@id/icon_phone"
                     android:theme="@style/LoginTextTheme"
@@ -136,10 +137,10 @@
 
                 <ImageView
                     android:id="@+id/icon_name"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
+                    android:layout_width="@dimen/icon_size"
+                    android:layout_height="@dimen/icon_size"
                     android:layout_below="@+id/icon_email"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="@dimen/margin_vlarge"
                     android:background="@android:color/transparent"
                     android:scaleType="fitXY"
                     android:src="@drawable/ic_person" />
@@ -148,7 +149,7 @@
                     android:id="@+id/name_label"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="@dimen/margin_small"
                     android:layout_below="@+id/email_label"
                     android:layout_toRightOf="@id/icon_phone"
                     android:theme="@style/LoginTextTheme"
@@ -174,7 +175,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/name_label"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="@dimen/margin_medium"
                     android:background="@color/color_yellow"
                     android:gravity="center"
                     android:onClick="@{profileViewModel.onUpdateButtonClick()}"

@@ -4,6 +4,8 @@ import android.content.Context;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 /**
  * Created by kuliza306 on 05/08/17.
  */

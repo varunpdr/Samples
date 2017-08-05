@@ -70,13 +70,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/header"
-                android:layout_margin="30dp">
+                android:layout_margin="@dimen/margin_vlarge">
 
                 <ImageView
                     android:id="@+id/icon_phone"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:layout_marginTop="25dp"
+                    android:layout_width="@dimen/icon_size"
+                    android:layout_height="@dimen/icon_size"
+                    android:layout_marginTop="@dimen/margin_large"
                     android:scaleType="fitXY"
                     android:src="@drawable/ic_phone" />
 
@@ -84,7 +84,7 @@
                     android:id="@+id/phone_label"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="@dimen/margin_small"
                     android:layout_toRightOf="@id/icon_phone"
                     android:theme="@style/LoginTextTheme"
                     app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout">
@@ -106,10 +106,10 @@
 
                 <ImageView
                     android:id="@+id/icon_key"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
+                    android:layout_width="@dimen/icon_size"
+                    android:layout_height="@dimen/icon_size"
                     android:layout_below="@+id/icon_phone"
-                    android:layout_marginTop="35dp"
+                    android:layout_marginTop="@dimen/margin_xlarge"
                     android:scaleType="fitXY"
                     android:src="@drawable/ic_password" />
 
@@ -118,8 +118,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/phone_label"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="@dimen/margin_small"
+                    android:layout_marginTop="@dimen/margin_small"
                     android:layout_toRightOf="@id/icon_key"
                     android:theme="@style/LoginTextTheme"
                     app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout">
@@ -133,7 +133,7 @@
                         android:inputType="textPassword"
                         android:maxLines="1"
                         android:nextFocusDown="@+id/password"
-                        android:paddingRight="30dp"
+                        android:paddingRight="@dimen/padding_large"
                         android:text="@={loginViewModel.mPasswordField}"
                         android:textColor="@color/color_white" />
 
@@ -141,11 +141,11 @@
 
                 <ImageView
                     android:id="@+id/password_vibility"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
+                    android:layout_width="@dimen/icon_size"
+                    android:layout_height="@dimen/icon_size"
                     android:layout_alignBottom="@id/password_label"
                     android:layout_alignParentRight="true"
-                    android:layout_margin="10dp"
+                    android:layout_margin="@dimen/margin_small"
                     android:src="@drawable/ic_visibility_off" />
 
                 <Button
@@ -153,7 +153,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/password_label"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="@dimen/margin_medium"
                     android:background="@color/color_yellow"
                     android:gravity="center"
                     android:onClick="@{loginViewModel.onLogInButtonClick()}"
@@ -165,22 +165,22 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/loginButton"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="@dimen/margin_medium"
                     android:gravity="center"
                     android:onClick="@{loginViewModel.onForgotTextClick()}"
                     android:text="Forgot Password?"
                     android:textColor="@color/color_white" />
 
                 <Button
-                    android:id="@+id/register"
+                    android:id="@id/register"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/forgotPassword"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="@dimen/margin_vlarge"
                     android:background="@drawable/stroke_background"
                     android:gravity="center"
-                    android:text="Create Account"
                     android:onClick="@{loginViewModel.onRegisterButtonClick()}"
+                    android:text="Create Account"
                     android:textColor="@color/color_white" />
             </RelativeLayout>
 

@@ -27,53 +27,54 @@
             <TextView
                 android:id="@+id/login_view"
                 android:layout_width="wrap_content"
-                android:gravity="center"
+                android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:layout_margin="10dp"
-                android:textColor="@color/color_white"
-                android:text="LOG IN"
+                android:layout_margin="@dimen/margin_small"
+                android:gravity="center"
                 android:onClick="@{regViewModel.onLogInClick()}"
-                android:textSize="18sp"
-                android:layout_height="wrap_content" />
+                android:text="LOG IN"
+                android:textColor="@color/color_white"
+                android:textSize="@dimen/text_medium" />
 
             <TextView
                 android:id="@+id/register"
                 android:layout_width="wrap_content"
-                android:gravity="center"
+                android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="50dp"
-                android:textColor="@color/color_white"
+                android:gravity="center"
                 android:text="REGISTER"
-                android:textSize="30sp"
-                android:textStyle="bold"
-                android:layout_height="wrap_content" />
+                android:textColor="@color/color_white"
+                android:textSize="@dimen/text_xxxmedium"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/reg_descrption"
                 android:layout_width="wrap_content"
-                android:gravity="center"
+                android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="120dp"
-                android:textColor="@color/color_white"
+                android:layout_below="@id/register"
+                android:layout_marginTop="@dimen/margin_large"
+                android:gravity="center"
                 android:text="Please Register with Zolo to continue"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:layout_height="wrap_content" />
+                android:textColor="@color/color_white"
+                android:textSize="@dimen/text_small"
+                android:textStyle="bold" />
 
             <RelativeLayout
                 android:id="@+id/field_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/reg_descrption"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
-                android:layout_marginTop="20dp">
+                android:layout_marginLeft="@dimen/margin_vlarge"
+                android:layout_marginRight="@dimen/margin_vlarge"
+                android:layout_marginTop="@dimen/margin_medium">
 
                 <ImageView
                     android:id="@+id/icon_phone"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:layout_marginTop="25dp"
+                    android:layout_width="@dimen/icon_size"
+                    android:layout_height="@dimen/icon_size"
+                    android:layout_marginTop="@dimen/margin_large"
                     android:scaleType="fitXY"
                     android:src="@drawable/ic_phone" />
 
@@ -81,7 +82,7 @@
                     android:id="@+id/phone_label"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="@dimen/margin_small"
                     android:layout_toRightOf="@id/icon_phone"
                     android:theme="@style/LoginTextTheme"
                     app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout">
@@ -103,10 +104,10 @@
 
                 <ImageView
                     android:id="@+id/icon_email"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
+                    android:layout_width="@dimen/icon_size"
+                    android:layout_height="@dimen/icon_size"
                     android:layout_below="@+id/icon_phone"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="@dimen/margin_vlarge"
                     android:scaleType="fitXY"
                     android:src="@drawable/ic_email" />
 
@@ -114,8 +115,8 @@
                     android:id="@+id/email_label"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
                     android:layout_below="@+id/phone_label"
+                    android:layout_marginLeft="@dimen/margin_small"
                     android:layout_toRightOf="@id/icon_phone"
                     android:theme="@style/LoginTextTheme"
                     app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout">
@@ -136,10 +137,10 @@
 
                 <ImageView
                     android:id="@+id/icon_name"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
+                    android:layout_width="@dimen/icon_size"
+                    android:layout_height="@dimen/icon_size"
                     android:layout_below="@+id/icon_email"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="@dimen/margin_vlarge"
                     android:background="@android:color/transparent"
                     android:scaleType="fitXY"
                     android:src="@drawable/ic_person" />
@@ -148,8 +149,8 @@
                     android:id="@+id/name_label"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
                     android:layout_below="@+id/email_label"
+                    android:layout_marginLeft="@dimen/margin_small"
                     android:layout_toRightOf="@id/icon_phone"
                     android:theme="@style/LoginTextTheme"
                     app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout">
@@ -167,12 +168,13 @@
                         android:textColor="@color/color_white" />
 
                 </android.support.design.widget.TextInputLayout>
+
                 <ImageView
                     android:id="@+id/icon_key"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
+                    android:layout_width="@dimen/icon_size"
+                    android:layout_height="@dimen/icon_size"
                     android:layout_below="@+id/icon_name"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="@dimen/margin_vlarge"
                     android:scaleType="fitXY"
                     android:src="@drawable/ic_password" />
 
@@ -181,7 +183,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/name_label"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="@dimen/margin_small"
                     android:layout_toRightOf="@id/icon_key"
                     android:theme="@style/LoginTextTheme"
                     app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout">
@@ -203,11 +205,11 @@
 
                 <ImageView
                     android:id="@+id/password_vibility"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
+                    android:layout_width="@dimen/icon_size"
+                    android:layout_height="@dimen/icon_size"
                     android:layout_alignBottom="@id/password_label"
                     android:layout_alignParentRight="true"
-                    android:layout_margin="10dp"
+                    android:layout_margin="@dimen/margin_small"
                     android:src="@drawable/ic_visibility_off" />
 
                 <Button
@@ -215,7 +217,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/password_label"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="@dimen/margin_medium"
                     android:background="@color/color_yellow"
                     android:gravity="center"
                     android:onClick="@{regViewModel.onRegButtonClick()}"

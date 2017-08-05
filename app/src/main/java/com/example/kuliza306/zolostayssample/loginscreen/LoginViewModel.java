@@ -5,8 +5,10 @@ import android.databinding.BaseObservable;
 import android.databinding.ObservableField;
 import android.view.View;
 
+import com.example.kuliza306.zolostayssample.R;
 import com.example.kuliza306.zolostayssample.database.DataProviderManager;
 import com.example.kuliza306.zolostayssample.database.UserInfoData;
+import com.example.kuliza306.zolostayssample.utility.Constants;
 
 import rx.Observable;
 import rx.functions.Func1;
@@ -36,12 +38,12 @@ public class LoginViewModel extends BaseObservable {
     private Context mContext;
 
     LoginViewModel(Context context) {
-        mContext=context;
+        mContext = context;
         mMobileStream = toObservable(mMobileField);
         mPasswordStream = toObservable(mPasswordField);
         mLoginStatus = PublishSubject.create();
         mTransitionSubject = PublishSubject.create();
-        mLoginModelSubject=PublishSubject.create();
+        mLoginModelSubject = PublishSubject.create();
 
     }
 
@@ -86,7 +88,7 @@ public class LoginViewModel extends BaseObservable {
 
             @Override
             public void onClick(View view) {
-                triggerTransition("register");
+                triggerTransition(Constants.REGISTER);
             }
         };
     }
@@ -96,7 +98,7 @@ public class LoginViewModel extends BaseObservable {
 
             @Override
             public void onClick(View view) {
-                triggerTransition("forgotPassword");
+                triggerTransition(Constants.FORGOT_PASSWORD);
             }
         };
     }
@@ -109,7 +111,7 @@ public class LoginViewModel extends BaseObservable {
         if (validateMobile() != null || validatePassword() != null) {
             mLoginStatus.onNext(false);
         } else {
-            UserInfoData userInfoData = DataProviderManager.getUserLoginInfo(mContext, mMobileField.get().toString().trim(),mPasswordField.get());
+            UserInfoData userInfoData = DataProviderManager.getUserLoginInfo(mContext, mMobileField.get().toString().trim(), mPasswordField.get());
             if (userInfoData != null) {
                 mLoginStatus.onNext(true);
                 mLoginModelSubject.onNext(userInfoData);
@@ -121,18 +123,18 @@ public class LoginViewModel extends BaseObservable {
 
     private String validateMobile() {
         if (mMobileField.get().toString().trim().isEmpty()) {
-            return "mobile number can't be empty";
+            return mContext.getResources().getString(R.string.mobile_empty);
         } else if (Integer.parseInt(mMobileField.get().toString().substring(0, 1)) < 7 || mMobileField.get().toString().trim().length() < 10)
-            return "invalid mobile number";
+            return mContext.getResources().getString(R.string.invalid_mobile);
 
         return null;
     }
 
     private String validatePassword() {
         if (mPasswordField.get().toString().trim().isEmpty()) {
-            return "password can't be empty";
+            return mContext.getResources().getString(R.string.empty_password);
         } else if (mPasswordField.get().toString().trim().length() < 6 || mPasswordField.get().toString().trim().length() > 16) {
-            return "password length should be between 6-16 chars";
+            return mContext.getString(R.string.password_length_validation);
         }
 
         return null;

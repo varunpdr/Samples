@@ -6,11 +6,10 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.method.PasswordTransformationMethod;
 import android.view.View;
-import android.widget.Toast;
 
 import com.example.kuliza306.zolostayssample.R;
 import com.example.kuliza306.zolostayssample.database.UserInfoData;
-import com.example.kuliza306.zolostayssample.databinding.ActivityMainBinding;
+import com.example.kuliza306.zolostayssample.databinding.ActivityLoginBinding;
 import com.example.kuliza306.zolostayssample.forgotpasswordscreen.ForgotPasswordActivity;
 import com.example.kuliza306.zolostayssample.profile.ProfileActivity;
 import com.example.kuliza306.zolostayssample.registrationscreen.RegistrationActivity;
@@ -23,7 +22,7 @@ import rx.functions.Action1;
 public class LoginActivity extends AppCompatActivity {
 
     private LoginViewModel mLoginViewModel;
-    private ActivityMainBinding mActivityMainBinding;
+    private ActivityLoginBinding mBinding;
     private boolean sPasswordFlag = true;
     private String mMobileError;
     private String mPasswordError;
@@ -36,25 +35,25 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void initDataBinding() {
-        mActivityMainBinding = DataBindingUtil.setContentView(LoginActivity.this, R.layout.activity_main);
+        mBinding = DataBindingUtil.setContentView(LoginActivity.this, R.layout.activity_login);
         mLoginViewModel = new LoginViewModel(this);
-        mActivityMainBinding.setLoginViewModel(mLoginViewModel);
+        mBinding.setLoginViewModel(mLoginViewModel);
     }
 
     private void initSetUp() {
-        mActivityMainBinding.passwordVibility.setOnClickListener(new View.OnClickListener() {
+        mBinding.passwordVibility.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (sPasswordFlag) {
-                    mActivityMainBinding.passwordVibility.setImageDrawable(getResources().getDrawable(R.drawable.ic_visibility));
-                    mActivityMainBinding.password.setTransformationMethod(null);
+                    mBinding.passwordVibility.setImageDrawable(getResources().getDrawable(R.drawable.ic_visibility));
+                    mBinding.password.setTransformationMethod(null);
                     sPasswordFlag = false;
                 } else {
-                    mActivityMainBinding.passwordVibility.setImageDrawable(getResources().getDrawable(R.drawable.ic_visibility_off));
-                    mActivityMainBinding.password.setTransformationMethod(new PasswordTransformationMethod());
+                    mBinding.passwordVibility.setImageDrawable(getResources().getDrawable(R.drawable.ic_visibility_off));
+                    mBinding.password.setTransformationMethod(new PasswordTransformationMethod());
                     sPasswordFlag = true;
                 }
-                mActivityMainBinding.password.setSelection(mActivityMainBinding.password.getText().length());
+                mBinding.password.setSelection(mBinding.password.getText().length());
             }
         });
 
@@ -87,14 +86,14 @@ public class LoginActivity extends AppCompatActivity {
             public void onNext(Boolean status) {
                 if (!status) {
                     if (mMobileError != null) {
-                        Utility.showSnackbar(LoginActivity.this, mMobileError, mActivityMainBinding.coordinateLayout, false);
+                        Utility.showSnackbar(LoginActivity.this, mMobileError, mBinding.coordinateLayout, false);
                     } else if (mPasswordError != null) {
-                        Utility.showSnackbar(LoginActivity.this, mPasswordError, mActivityMainBinding.coordinateLayout, false);
+                        Utility.showSnackbar(LoginActivity.this, mPasswordError, mBinding.coordinateLayout, false);
                     } else {
-                        Utility.showSnackbar(LoginActivity.this, getResources().getString(R.string.invalid_credentials), mActivityMainBinding.coordinateLayout, false);
+                        Utility.showSnackbar(LoginActivity.this, getResources().getString(R.string.invalid_credentials), mBinding.coordinateLayout, false);
                     }
                 } else {
-                    Utility.showSnackbar(LoginActivity.this, getResources().getString(R.string.login_success), mActivityMainBinding.coordinateLayout, true);
+                    Utility.showSnackbar(LoginActivity.this, getResources().getString(R.string.login_success), mBinding.coordinateLayout, true);
                 }
             }
         });

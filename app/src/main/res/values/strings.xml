@@ -11,4 +11,12 @@
     <string name="email_not_registered">"This email is not registered with us."</string>
     <string name="email_sent">An email has been sent to your email</string>
     <string name="update_success">Successfully updated</string>
+    <string name="empty_email">"Email can't be empty"</string>
+    <string name="invalid_mobile">Invalid mobile number</string>
+    <string name="mobile_empty">"Mobile number can't be empty"</string>
+    <string name="empty_password">"Password can't be empty"</string>
+    <string name="password_length_validation">\"Password length should be between 6-16 chars\"</string>
+    <string name="invalid_email">Invalid email</string>
+    <string name="empty_name">Name cant\'be empty</string>
+    <string name="invalid_name">Invalid name</string>
 </resources>

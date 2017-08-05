@@ -5,8 +5,10 @@ import android.databinding.BaseObservable;
 import android.databinding.ObservableField;
 import android.view.View;
 
+import com.example.kuliza306.zolostayssample.R;
 import com.example.kuliza306.zolostayssample.database.DataProviderManager;
 import com.example.kuliza306.zolostayssample.database.UserInfoData;
+import com.example.kuliza306.zolostayssample.utility.Constants;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -35,14 +37,14 @@ public class ProfileViewModel extends BaseObservable {
     private Context mContext;
     private UserInfoData mUserInfoData;
 
-    ProfileViewModel(UserInfoData userInfoData,Context context) {
+    ProfileViewModel(UserInfoData userInfoData, Context context) {
         mContext = context;
         mMobileStream = toObservable(mMobileField);
         mNameStream = toObservable(mNameField);
         mEmailStream = toObservable(mEmailField);
         mRegisterStatus = PublishSubject.create();
         mTransitionSubject = PublishSubject.create();
-        mUserInfoData=userInfoData;
+        mUserInfoData = userInfoData;
         mMobileField.set(userInfoData.getPhoneNumber());
         mEmailField.set(userInfoData.getEmailId());
         mNameField.set(userInfoData.getName());
@@ -94,23 +96,22 @@ public class ProfileViewModel extends BaseObservable {
         };
     }
 
-    public View.OnClickListener onLogOutClick()
-    {
+    public View.OnClickListener onLogOutClick() {
 
-        return new View.OnClickListener(){
+        return new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                mTransitionSubject.onNext("login");
+                mTransitionSubject.onNext(Constants.LOGIN);
             }
         };
     }
 
     private String validateMobile() {
         if (mMobileField.get().toString().trim().isEmpty()) {
-            return "mobile number can't be empty";
+            return mContext.getString(R.string.mobile_empty);
         } else if (Integer.parseInt(mMobileField.get().toString().substring(0, 1)) < 7 || mMobileField.get().toString().trim().length() < 10)
-            return "invalid mobile number";
+            return mContext.getString(R.string.invalid_mobile);
 
         return null;
     }
@@ -122,18 +123,18 @@ public class ProfileViewModel extends BaseObservable {
         Matcher matcher = pattern.matcher(mNameField.get().toString());
 
         if (mNameField.get().toString().trim().isEmpty()) {
-            return "name cant'be empty";
+            return mContext.getString(R.string.empty_name);
         } else if (!matcher.matches()) {
-            return "invalid name";
+            return mContext.getString(R.string.invalid_name);
         }
         return null;
     }
 
     private String validateEmail() {
         if (mEmailField.get().isEmpty()) {
-            return "email cant'be empty";
+            return mContext.getString(R.string.empty_email);
         } else if (!android.util.Patterns.EMAIL_ADDRESS.matcher(mEmailField.get()).matches()) {
-            return "invalid email id";
+            return mContext.getString(R.string.invalid_email);
         }
         return null;
     }
@@ -142,8 +143,8 @@ public class ProfileViewModel extends BaseObservable {
         if (validateMobile() != null || validateEmail() != null || validateName() != null) {
             mRegisterStatus.onNext(false);
         } else {
-                DataProviderManager.replaceUserInfo(mContext,new UserInfoData(mUserInfoData.getId(),mMobileField.get().toLowerCase(),mEmailField.get().toLowerCase(),mNameField.get().toLowerCase(),mUserInfoData.getPassword().toString()));
-                mRegisterStatus.onNext(true);
+            DataProviderManager.replaceUserInfo(mContext, new UserInfoData(mUserInfoData.getId(), mMobileField.get().toLowerCase(), mEmailField.get().toLowerCase(), mNameField.get().toLowerCase(), mUserInfoData.getPassword().toString()));
+            mRegisterStatus.onNext(true);
         }
     }
 
