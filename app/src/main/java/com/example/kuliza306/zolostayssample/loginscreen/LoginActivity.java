@@ -1,16 +1,16 @@
-package com.example.kuliza306.zolostayssample;
+package com.example.kuliza306.zolostayssample.loginscreen;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.method.PasswordTransformationMethod;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.kuliza306.zolostayssample.R;
 import com.example.kuliza306.zolostayssample.databinding.ActivityMainBinding;
+import com.example.kuliza306.zolostayssample.registrationscreen.RegistrationActivity;
 
 import rx.Observer;
 import rx.functions.Action1;
@@ -32,7 +32,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void initDataBinding() {
         mActivityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-        mLoginViewModel = new LoginViewModel();
+        mLoginViewModel = new LoginViewModel(this);
         mActivityMainBinding.setLoginViewModel(mLoginViewModel);
     }
 
@@ -95,6 +95,22 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
+
+        mLoginViewModel.getmTransitionSubject().subscribe(new Action1<String>() {
+            @Override
+            public void call(String event) {
+                if(event.equalsIgnoreCase("register"))
+                {
+                    Intent intent = new Intent(LoginActivity.this, RegistrationActivity.class);
+                    startActivity(intent);
+                }
+                else
+                {
+
+                }
+            }
+        });
+
 
 
     }

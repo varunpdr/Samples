@@ -1,9 +1,7 @@
-package com.example.kuliza306.zolostayssample;
+package com.example.kuliza306.zolostayssample.utility;
 
 import android.databinding.ObservableField;
 import android.support.annotation.NonNull;
-
-import com.example.kuliza306.zolostayssample.ReadOnlyField;
 
 import rx.Observable;
 import rx.Subscriber;
