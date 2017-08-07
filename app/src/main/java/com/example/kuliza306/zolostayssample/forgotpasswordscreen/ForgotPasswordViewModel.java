@@ -90,7 +90,7 @@ public class ForgotPasswordViewModel extends BaseObservable {
             mForgotStatus.onNext(false);
         } else {
 
-            UserInfoData userInfoData = DataProviderManager.getUserEmailInfo(mContext, mEmailField.get().toLowerCase().toString());
+            UserInfoData userInfoData = new DataProviderManager().getUserEmailInfo(mContext, mEmailField.get().toLowerCase().toString());
             if (userInfoData == null) {
                 mForgotStatus.onNext(false);
             } else {

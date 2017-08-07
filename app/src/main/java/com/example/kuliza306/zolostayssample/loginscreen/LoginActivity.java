@@ -8,6 +8,8 @@ import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 
 import com.example.kuliza306.zolostayssample.R;
+import com.example.kuliza306.zolostayssample.application.ZoloApplication;
+import com.example.kuliza306.zolostayssample.database.DaoSession;
 import com.example.kuliza306.zolostayssample.database.UserInfoData;
 import com.example.kuliza306.zolostayssample.databinding.ActivityLoginBinding;
 import com.example.kuliza306.zolostayssample.forgotpasswordscreen.ForgotPasswordActivity;
@@ -15,6 +17,8 @@ import com.example.kuliza306.zolostayssample.profile.ProfileActivity;
 import com.example.kuliza306.zolostayssample.registrationscreen.RegistrationActivity;
 import com.example.kuliza306.zolostayssample.utility.Constants;
 import com.example.kuliza306.zolostayssample.utility.Utility;
+
+import javax.inject.Inject;
 
 import rx.Observer;
 import rx.functions.Action1;

@@ -143,7 +143,7 @@ public class ProfileViewModel extends BaseObservable {
         if (validateMobile() != null || validateEmail() != null || validateName() != null) {
             mRegisterStatus.onNext(false);
         } else {
-            DataProviderManager.replaceUserInfo(mContext, new UserInfoData(mUserInfoData.getId(), mMobileField.get().toLowerCase(), mEmailField.get().toLowerCase(), mNameField.get().toLowerCase(), mUserInfoData.getPassword().toString()));
+            new DataProviderManager().replaceUserInfo(mContext, new UserInfoData(mUserInfoData.getId(), mMobileField.get().toLowerCase(), mEmailField.get().toLowerCase(), mNameField.get().toLowerCase(), mUserInfoData.getPassword().toString()));
             mRegisterStatus.onNext(true);
         }
     }

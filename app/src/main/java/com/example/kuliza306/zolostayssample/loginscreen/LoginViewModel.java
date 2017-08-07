@@ -111,7 +111,7 @@ public class LoginViewModel extends BaseObservable {
         if (validateMobile() != null || validatePassword() != null) {
             mLoginStatus.onNext(false);
         } else {
-            UserInfoData userInfoData = DataProviderManager.getUserLoginInfo(mContext, mMobileField.get().toString().trim(), mPasswordField.get());
+            UserInfoData userInfoData = new DataProviderManager().getUserLoginInfo(mContext, mMobileField.get().toString().trim(), mPasswordField.get());
             if (userInfoData != null) {
                 mLoginStatus.onNext(true);
                 mLoginModelSubject.onNext(userInfoData);

@@ -157,9 +157,9 @@ public class RegistrationViewModel extends BaseObservable {
             mRegisterStatus.onNext(false);
         } else {
 
-            UserInfoData userInfoData = DataProviderManager.getUserInfo(mContext, mMobileField.get().toString(), mEmailField.get().toLowerCase().toString());
+            UserInfoData userInfoData = new DataProviderManager().getUserInfo(mContext, mMobileField.get().toString(), mEmailField.get().toLowerCase().toString());
             if (userInfoData == null) {
-                DataProviderManager.insertUserInfo(mContext, new UserInfoData(mMobileField.get().toLowerCase(), mEmailField.get().toLowerCase(), mNameField.get().toLowerCase(), mPasswordField.get().toString()));
+                new DataProviderManager().insertUserInfo(mContext, new UserInfoData(mMobileField.get().toLowerCase(), mEmailField.get().toLowerCase(), mNameField.get().toLowerCase(), mPasswordField.get().toString()));
                 mRegisterStatus.onNext(true);
             } else {
                 mRegisterStatus.onNext(false);
